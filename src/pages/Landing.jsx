@@ -9,7 +9,7 @@ import Team from "../components/landing/Team";
 const Landing = () => {
   return (
     <main className="w-full overflow-hidden relative font-[sf]">
-      {/* <Loader/> */}
+      <Loader/>
       <Navbar />
       <Hero />
       <TryIt />
