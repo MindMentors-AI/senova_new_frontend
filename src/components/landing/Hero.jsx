@@ -1,21 +1,110 @@
 import React from "react";
-import Orb from "../Orb";
-import { FaPlay } from "react-icons/fa";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(SplitText);
 
 const Hero = () => {
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      defaults: { ease: "power4.in", willChange: "transform opacity" },
+    });
+
+    // the target can be selector text, an element, or an Array of elements
+    let head1 = SplitText.create(".head1", { type: "chars" });
+    let head2 = SplitText.create(".head2", { type: "chars" });
+    let head3 = SplitText.create(".head3", { type: "chars" });
+
+    tl.from(
+      head1.chars,
+      {
+        x: -50,
+        opacity: 0,
+        duration: 0.3,
+        filter: "blur(5px)",
+        stagger: 0.05,
+      },
+      ">=1.7"
+    );
+    tl.from(
+      head2.chars,
+      {
+        x: -50,
+        opacity: 0,
+        duration: 0.3,
+        filter: "blur(5px)",
+        stagger: 0.05,
+      },
+      "-=0.5"
+    );
+    tl.from(
+      head3.chars,
+      {
+        x: -50,
+        opacity: 0,
+        duration: 0.3,
+        filter: "blur(5px)",
+        stagger: 0.05,
+      },
+      "-=0.6"
+    );
+
+    tl.from(
+      ".box1",
+      {
+        y: 50,
+        opacity: 0,
+        duration: 0.5,
+        filter: "blur(5px)",
+      },
+      "b"
+    );
+    tl.from(
+      ".box2",
+      {
+        y: 50,
+        opacity: 0,
+        duration: 0.5,
+        filter: "blur(5px)",
+      },
+      "-=0.1"
+    );
+    tl.from(
+      ".box3",
+      {
+        y: 50,
+        opacity: 0,
+        duration: 0.5,
+        filter: "blur(5px)",
+      },
+      "-=0.1"
+    );
+    tl.from(
+      ".play-btn",
+      {
+        y: 50,
+        opacity: 0,
+        duration: 0.5,
+        filter: "blur(5px)",
+      },
+      "-=1.8"
+    );
+  }, []);
+
   return (
     <section className="w-full h-screen p-12 relative overflow-hidden z-0">
-      <Orb
+      {/* <Orb
         hoverIntensity={0.3}
         rotateOnHover={true}
         hue={0}
         forceHoverState={false}
-      />
-      <div className="overlay absolute inset-0 w-full h-screen pointer-events-none flex items-center justify-center flex-col gap-20 px-60 text-[#4C3425] font-semibold text-[7.5vw] leading-none">
+      /> */}
+      <div className="overlay absolute inset-0 w-full h-screen pointer-events-none flex items-center justify-center flex-col gap-20 px-60 text-[#1E1E1E] font-semibold text-[7.5vw] leading-none">
         <div className="title-one w-full relative">
-          Intelligent
-          <div className="flex items-center gap-4 bg-[#9CB067] rounded-t-xl rounded-r-xl px-6 py-3 w-fit shadow-md absolute left-[40%] -top-8 text-[.9vw] leading-tight text-white font-normal">
-            <span className="flex items-center justify-center rounded-full bg-white/20 w-10 h-10">
+          <h1 className="head1">Intelligent</h1>
+          <div className="box1 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-t-xl rounded-r-xl px-6 py-3 w-fit shadow-md absolute left-[40%] -top-8 text-[.9vw] leading-tight text-[#6F6F6F] font-normal">
+            <span className="flex items-center justify-center rounded-full bg-[#4A4A4A] w-10 h-10">
               <svg width="26" height="26" viewBox="0 0 18 18" fill="none">
                 <circle cx="9" cy="4.5" r="1.5" fill="#fff" fillOpacity="0.8" />
                 <circle
@@ -43,9 +132,9 @@ const Hero = () => {
           </div>
         </div>
         <div className="title-two w-full text-center relative">
-          Mental Health
-          <div className="flex items-center gap-4 bg-[#F98C5C] rounded-b-xl rounded-l-xl px-6 py-3 w-fit shadow-md absolute left-14 -bottom-26 text-[.9vw] leading-tight text-left text-white font-normal">
-            <span className="flex items-center justify-center rounded-full bg-white/20 w-10 h-10">
+          <h1 className="head2">Mental Health</h1>
+          <div className="box2 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 rounded-b-xl rounded-l-xl px-6 py-3 w-fit backdrop-blur-sm shadow-md absolute left-14 -bottom-26 text-[.9vw] leading-tight text-left text-[#6f6f6f] font-normal">
+            <span className="flex items-center justify-center rounded-full bg-[#4a4a4a] w-10 h-10">
               <svg width="26" height="26" viewBox="0 0 18 18" fill="none">
                 <circle cx="9" cy="4.5" r="1.5" fill="#fff" fillOpacity="0.8" />
                 <circle
@@ -77,9 +166,9 @@ const Hero = () => {
           </div>
         </div>
         <div className="title-three w-full text-right relative">
-          AI Chatbot
-          <div className="flex items-center gap-4 bg-[#906246] rounded-r-xl rounded-b-xl px-6 py-3 w-fit shadow-md absolute left-[72%] -bottom-20 text-[.9vw] leading-tight text-white text-left font-normal">
-            <span className="flex items-center justify-center rounded-full bg-white/20 w-10 h-10">
+          <h1 className="head3">AI Chatbot</h1>
+          <div className="box3 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 rounded-r-xl rounded-b-xl px-6 py-3 w-fit shadow-md backdrop-blur-sm absolute left-[72%] -bottom-20 text-[.9vw] leading-tight text-[#6f6f6f] text-left font-normal">
+            <span className="flex items-center justify-center rounded-full bg-[#4a4a4a] w-10 h-10">
               <svg width="26" height="26" viewBox="0 0 18 18" fill="none">
                 <circle cx="9" cy="4.5" r="1.5" fill="#fff" fillOpacity="0.8" />
                 <circle
@@ -100,14 +189,19 @@ const Hero = () => {
               </svg>
             </span>
             <span>
-              Let's focus on self-care activities,<br />
-              like engaging in hobbies,<br />
+              Let's focus on self-care activities,
+              <br />
+              like engaging in hobbies,
+              <br />
               connecting with loved ones!
             </span>
           </div>
         </div>
       </div>
-      <div className="play-btn absolute bottom-5 left-1/2 -translate-x-1/2 bg-[#4C3425] text-white rounded-full cursor-pointer px-6 py-4 flex items-center justify-center gap-2 leading-none"><FaPlay /><span className="text-[1.2vw] font-medium">Play</span></div>
+      {/* <div className="play-btn absolute bottom-20 left-1/2 -translate-x-1/2 bg-[#4a4a4a] text-[#dedede] rounded-full cursor-pointer px-6 py-4 flex items-center justify-center gap-2 leading-none">
+        <FaPlay />
+        <span className="text-[1.2vw] font-medium">Get Started</span>
+      </div> */}
     </section>
   );
 };

@@ -2,21 +2,21 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/landing/Hero";
 import Loader from "../components/Loader";
-import TryIt from "../components/landing/TryIt";
-import OurValue from "../components/landing/OurValue";
-import Team from "../components/landing/Team";
 import Footer from "../components/Footer";
+import About from "../components/landing/About";
+import How from "../components/landing/How";
+import Testimonials from "../components/landing/Testimonials";
 
 const Landing = () => {
   return (
     <main className="w-full overflow-hidden relative font-[sf]">
-      {/* <Loader/> */}
+      <Loader />
       <Navbar />
       <Hero />
-      <TryIt />
-      <OurValue />
-      <Team />
-      <Footer/>
+      <About />
+      <How />
+      <Testimonials />
+      <Footer />
     </main>
   );
 };
