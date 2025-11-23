@@ -73,7 +73,7 @@ const Contact = () => {
           perSlideRotate: 0,
           rotate: 0
       
-        }
+        }}
         loop={true}
         className="mySwiper w-full h-full relative flex items-center justify-center"
       >
