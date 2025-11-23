@@ -41,37 +41,16 @@ const CameraController = () => {
 const App = () => {
   return (
     <>
-      <CustomCursor />
+     
       <div className="fixed top-0 left-0 w-full h-full z-1">
         <Canvas id="canvas">
-          <OrbitControls enableDamping={true} />
+          {/* <OrbitControls enableDamping={true} /> */}
           <CameraController />
           <Scene />
         </Canvas>
       </div>
 
-      <div className="fixed top-0 left-0 w-full h-full z-3 pointer-events-none">
-        <Noise
-          patternSize={250}
-          patternScaleX={1}
-          patternScaleY={1}
-          patternRefreshInterval={2}
-          patternAlpha={15}
-        />
 
-        <div className="fixed top-0 left-0 w-full h-full z-4 pointer-events-none">
-          <GradualBlurMemo
-            target="parent"
-            position="bottom"
-            height="6rem"
-            strength={2}
-            divCount={5}
-            curve="bezier"
-            exponential={true}
-            opacity={1}
-          />
-        </div>
-      </div>
 
       <div className="papa-div w-full h-full absolute top-0 left-0 z-2">
         <Landing />

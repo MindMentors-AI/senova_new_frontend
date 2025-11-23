@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import About from "../pages/About";
 import ErrorPage from "../components/ErrorPage";
 import App from "../App";
+import Contact from "../pages/Contact";
 
 const Router = createBrowserRouter([
   {
@@ -11,8 +12,13 @@ const Router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/about",
+    path: "/aboutus",
     element: <About />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/contacts",
+    element: <Contact />,
     errorElement: <ErrorPage />,
   },
 ]);

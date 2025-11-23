@@ -2,6 +2,7 @@ import React from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+import Magnet from "../Magnet";
 
 gsap.registerPlugin(SplitText);
 
@@ -93,18 +94,18 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="w-full h-screen p-12 relative overflow-hidden z-0">
+    <section className="w-full h-screen p-12 max-[599px]:p-4 relative overflow-hidden z-0">
       {/* <Orb
         hoverIntensity={0.3}
         rotateOnHover={true}
         hue={0}
         forceHoverState={false}
       /> */}
-      <div className="overlay absolute inset-0 w-full h-screen pointer-events-none flex items-center justify-center flex-col gap-20 px-60 text-[#1E1E1E] font-semibold text-[7.5vw] leading-none">
+      <div className="overlay absolute inset-0 w-full h-screen pointer-events-none flex items-center justify-center flex-col gap-20 max-[599px]:gap-16 px-60 max-[599px]:px-4 text-[#1E1E1E] font-semibold text-[7.5vw] max-[599px]:text-[15vw] leading-none">
         <div className="title-one w-full relative">
           <h1 className="head1">Intelligent</h1>
-          <div className="box1 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-t-xl rounded-r-xl px-6 py-3 w-fit shadow-md absolute left-[40%] -top-8 text-[.9vw] leading-tight text-[#6F6F6F] font-normal">
-            <span className="flex items-center justify-center rounded-full bg-[#4A4A4A] w-10 h-10">
+          <div className="box1 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-t-xl rounded-r-xl px-6 max-[599px]:px-4 py-3 max-[599px]:py-2 w-fit  shadow-md absolute left-[40%] -top-8 max-[599px]:-top-14 text-[.9vw] leading-tight max-[599px]:text-[3vw] text-[#6F6F6F] font-normal">
+            <span className="flex items-center justify-center rounded-full bg-[#4A4A4A] w-10 max-[599px]:w-8 h-10 max-[599px]:h-8">
               <svg width="26" height="26" viewBox="0 0 18 18" fill="none">
                 <circle cx="9" cy="4.5" r="1.5" fill="#fff" fillOpacity="0.8" />
                 <circle
@@ -133,8 +134,8 @@ const Hero = () => {
         </div>
         <div className="title-two w-full text-center relative">
           <h1 className="head2">Mental Health</h1>
-          <div className="box2 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 rounded-b-xl rounded-l-xl px-6 py-3 w-fit backdrop-blur-sm shadow-md absolute left-14 -bottom-26 text-[.9vw] leading-tight text-left text-[#6f6f6f] font-normal">
-            <span className="flex items-center justify-center rounded-full bg-[#4a4a4a] w-10 h-10">
+          <div className="box2 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 rounded-b-xl rounded-l-xl px-6 max-[599px]:px-4 py-3 max-[599px]:py-2 w-fit  backdrop-blur-sm shadow-md absolute left-14 max-[599px]:left-6 -bottom-26 max-[599px]:-bottom-16 text-[.9vw] le max-[599px]:text-[3vw] lading-tight text-left text-[#6f6f6f] font-normal">
+            <span className="flex items-center justify-center rounded-full bg-[#4a4a4a] w-10 max-[599px]:w-8 h-10 max-[599px]:h-8">
               <svg width="26" height="26" viewBox="0 0 18 18" fill="none">
                 <circle cx="9" cy="4.5" r="1.5" fill="#fff" fillOpacity="0.8" />
                 <circle
@@ -167,8 +168,8 @@ const Hero = () => {
         </div>
         <div className="title-three w-full text-right relative">
           <h1 className="head3">AI Chatbot</h1>
-          <div className="box3 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 rounded-r-xl rounded-b-xl px-6 py-3 w-fit shadow-md backdrop-blur-sm absolute left-[72%] -bottom-20 text-[.9vw] leading-tight text-[#6f6f6f] text-left font-normal">
-            <span className="flex items-center justify-center rounded-full bg-[#4a4a4a] w-10 h-10">
+          <div className="box3 flex items-center gap-4 bg-gradient-to-br from-white/20 to-white/10 rounded-r-xl rounded-b-xl px-6 max-[599px]:px-4 py-3 max-[599px]:py-2 w-fit max-[599px]:w-[67%] shadow-md backdrop-blur-sm absolute left-[72%] max-[599px]:left-[35%] -bottom-20 max-[599px]:-bottom-18 text-[.9vw] max-[599px]:text-[3vw] leading-tight text-[#6f6f6f] text-left font-normal">
+            <span className="flex items-center justify-center rounded-full bg-[#4a4a4a] w-10 max-[599px]:w-8 h-10 max-[599px]:h-8">
               <svg width="26" height="26" viewBox="0 0 18 18" fill="none">
                 <circle cx="9" cy="4.5" r="1.5" fill="#fff" fillOpacity="0.8" />
                 <circle

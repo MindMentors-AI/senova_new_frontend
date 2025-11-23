@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: sf;
-  src: url(/SFPRODISPLAYREGULAR.OTF);
+  src: url(font/HelveticaNowDisplay-Regular.ttf);
 }
 
 
@@ -23,4 +23,17 @@ canvas {
 body {
   background-color: #dedede;
   cursor: none;
+}
+
+@layer components {
+  .swiper-slide {
+    filter: blur(4px);
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .swiper-slide-active {
+    filter: blur(0);
+    transform: scale(1);
+  }
 }
