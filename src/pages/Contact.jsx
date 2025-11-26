@@ -2,167 +2,126 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import TiltedCard from "../components/TiltedCard";
+import { useEffect } from "react";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
+import Scene from "../components/Scene";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
+const Contactdata = [
+  {
+    name: "Akash Jaiswal",
+    role: "Team Leader",
+    imageSrc: "/aakash.svg",
+    linkedin: "https://www.linkedin.com/in/aakash-jaiswal-773bb9244",
+    twitter: "https://x.com/Aakash_jais03",
+    mail: "jaiswalraj03014@gmail.com",
+  },
+  {
+    name: "Gauranga Kumar",
+    role: "Researcher",
+    imageSrc: "/gauranga.svg",
+    linkedin: "https://www.linkedin.com/in/gauranga-kumar-baishya-4a12731ba/",
+    twitter: "https://twitter.com/gauranga_research",
+    mail: "gaurangabaishya15@gmail.com",
+  },
+  {
+    name: "Sameer Khan",
+    role: "Frontend Developer",
+    imageSrc: "https://avatars.githubusercontent.com/u/131584949?v=4",
+    linkedin: "https://www.linkedin.com/in/dev-sameer-khan/",
+    twitter: "https://x.com/Sameer_8teen",
+    mail: "khansameer84233@gmail.com",
+  },
+  {
+    name: "Luis Lorens",
+    role: "Sicologist (Tester)",
+    imageSrc: "https://images.unsplash.com/photo-1605083608390-a397bb302853?q=80&w=718&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    linkedin: "https://www.linkedin.com/in/tester-sicologist/",
+    twitter: "https://twitter.com/tester_sicologist",
+    mail: "tester.sicologist@example.com",
+  }
+]
 
+const CameraController = () => {
+  const mousePosition = useRef({ x: 0, y: 0 });
 
-// import required modules
-import { EffectCards, EffectCoverflow, Pagination } from 'swiper/modules';
-import ProfileCard from "../components/ProfileCard";
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      // Normalize mouse position (-1 to 1)
+      mousePosition.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mousePosition.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  useFrame(({ camera }) => {
+    // Camera position ko smoothly update karo
+    const targetX = mousePosition.current.x * 0.2;
+    const targetY = mousePosition.current.y * 0.2;
+
+    camera.position.x += (targetX - camera.position.x) * 0.1;
+    camera.position.y += (targetY - camera.position.y) * 0.1;
+
+    // Camera ko center ki taraf point karo
+    camera.lookAt(0, 0, 0);
+  });
+
+  return null;
+};
 
 const Contact = () => {
   return (
     <>
-    <Loader/>
+      <Loader/>
       <Navbar />
-      <section className="w-full h-screen pt-40 pb-20 relative"  >
-        {/* <div className="side-blurs w-full h-screen bg-black/20 absolute top-0 left-0 z-2 pointer-events-none">
-        <div className="left absolute top-0 left-0 w-[20%] h-full bg-black/1 backdrop-blur-xs"></div>
-        <div className="left absolute top-0 right-0 w-[20%] h-full bg-black/1 backdrop-blur-xs"></div>
-        </div> */}
-      {/* <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        loop={true}
-        centeredSlides={true}
-        spaceBetween={50}
-        slidesPerView={1.7}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        // pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper h-full w-full relative"
-      >
-        <SwiperSlide className="w-[80%] h-[80%]">
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide className="w-full h-full">
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide className="w-full h-full">
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide className="w-full h-full">
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide className="w-full h-full">
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide className="w-full h-full">
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-      </Swiper> */}
-      <Swiper
-        effect={'cards'}
-        grabCursor={true}
-        dir="rtl"
-        slidesPerView={3.5}
-        modules={[EffectCards]}
-        cardsEffect={{
-          perSlideOffset: 100,
-          perSlideRotate: 0,
-          rotate: 0
-      
-        }}
-        loop={true}
-        className="mySwiper w-full h-full relative flex items-center justify-center"
-      >
-         <SwiperSlide className="w-full h-full flex items-center justify-center">
-         <ProfileCard
-  name="Javi A. Torres"
-  title="Software Engineer"
-  handle="javicodes"
-  status="Online"
-  contactText="Contact Me"
-  avatarUrl="/path/to/avatar.jpg"
-  showUserInfo={true}
-  enableTilt={true}
-  enableMobileTilt={true}
-  onContactClick={() => console.log('Contact clicked')}
-/>
-      </SwiperSlide>
-      
-      <SwiperSlide className="w-full h-full">
-      <ProfileCard
-  name="Javi A. Torres"
-  title="Software Engineer"
-  handle="javicodes"
-  status="Online"
-  contactText="Contact Me"
-  avatarUrl="/path/to/avatar.jpg"
-  showUserInfo={true}
-  enableTilt={true}
-  enableMobileTilt={true}
-  onContactClick={() => console.log('Contact clicked')}
-/>
-      </SwiperSlide>
-      
-      <SwiperSlide className="w-full h-full">
-      <ProfileCard
-  name="Javi A. Torres"
-  title="Software Engineer"
-  handle="javicodes"
-  status="Online"
-  contactText="Contact Me"
-  avatarUrl="/path/to/avatar.jpg"
-  showUserInfo={true}
-  enableTilt={true}
-  enableMobileTilt={true}
-  onContactClick={() => console.log('Contact clicked')}
-/>
-      </SwiperSlide>
-      <SwiperSlide className="w-full h-full">
-      <ProfileCard
-  name="Javi A. Torres"
-  title="Software Engineer"
-  handle="javicodes"
-  status="Online"
-  contactText="Contact Me"
-  avatarUrl="/path/to/avatar.jpg"
-  showUserInfo={true}
-  enableTilt={true}
-  enableMobileTilt={true}
-  onContactClick={() => console.log('Contact clicked')}
-/>
-      </SwiperSlide>
-      
-      <SwiperSlide className="w-full h-full">
-      <ProfileCard
-  name="Javi A. Torres"
-  title="Software Engineer"
-  handle="javicodes"
-  status="Online"
-  contactText="Contact Me"
-  avatarUrl="/path/to/avatar.jpg"
-  showUserInfo={true}
-  enableTilt={true}
-  enableMobileTilt={true}
-  onContactClick={() => console.log('Contact clicked')}
-/>
-      </SwiperSlide>
-        {/* <SwiperSlide  className="w-full h-full bg-red-500 rounded-md">Slide 1</SwiperSlide>
-        <SwiperSlide  className="w-full h-full bg-green-500 rounded-md">Slide 2</SwiperSlide>
-        <SwiperSlide className="w-full h-full bg-black rounded-md"> Slide 3</SwiperSlide>
-        <SwiperSlide  className="w-full h-full bg-red-500 rounded-md">Slide 4</SwiperSlide>
-        <SwiperSlide  className="w-full h-full bg-green-500 rounded-md">Slide 5</SwiperSlide> */}
-        {/* <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
-      </Swiper>
-      </section>
+      <div className="fixed top-0 left-0 w-full h-full z-1">
+        <Canvas id="canvas">
+          {/* <OrbitControls enableDamping={true} /> */}
+          <CameraController />
+          <Scene />
+        </Canvas>
+      </div>
+      <main className="w-full min-h-screen relative z-2 flex items-center justify-center flex-col gap-20 max-[599px]:gap-10 max-[599px]:py-20">
+      <div className="w-full flex items-center justify-center flex-col" >
+      <h1 className="text-[3vw] max-[599px]:text-[9vw] title3 text-[#1e1e1e] font-semibold">
+      Meet Our Team
+        </h1>
+        <p className="w-[50%] text-center max-[599px]:w-full subTitle3 text-[#4a4a4a] text-[1.2vw] max-[599px]:text-[3.2vw] leading-[1.2] font-medium">
+        The brilliant minds behind Senova AI, revolutionizing human-AI interaction through advanced healthcare technology.
+        </p>
+      </div>
+      <div className="w-full flex items-center justify-center gap-10 max-[599px]:flex-wrap">
+        {Contactdata.map((item, index)=>(
+          <TiltedCard
+          key={index}
+          imageSrc={item.imageSrc}
+          altText={item.name + item.role}
+          captionText={item.role}
+          containerHeight="450px"
+          containerWidth="350px"
+          imageHeight="450px"
+          imageWidth="350px"
+          rotateAmplitude={12}
+          scaleOnHover={1.1}
+          showMobileWarning={false}
+          showTooltip={true}
+          displayOverlayContent={true}
+          linkedin={item.linkedin}
+          twitter={item.twitter}
+          mail={item.mail}
+          overlayContent={
+            <p className="tilted-card-demo-text mt-6 ml-6 bg-black/20 text-[#dedede] px-4 py-1 rounded-full">
+              {item.name}
+            </p>
+          }
+        />
+        ))}
+      </div>
+      </main>
       <Footer />
     </>
   );

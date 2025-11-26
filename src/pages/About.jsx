@@ -42,18 +42,18 @@ const About = () => {
     <>
     <Loader/>
       <Navbar />
-       <div className="fixed top-0 left-0 w-full h-full z-1">
+      <div className="fixed top-0 left-0 w-full h-full z-1">
         <Canvas id="canvas">
           {/* <OrbitControls enableDamping={true} /> */}
           <CameraController />
-          <Scene />
+          {/* <Scene /> */}
         </Canvas>
       </div>
       {/* <section className="papa-div w-full h-full absolute top-0 left-0 z-2"> */}
       <main className="w-full overflow-hidden relative font-[sf]">
-        <div className="w-full h-screen"> </div>
-        <div className="w-full h-screen"> </div>
-        <div className="w-full h-screen"> </div>
+        <div className="w-full h-screen bg-red-500"> </div>
+        <div className="w-full h-screen bg-green-500"> </div>
+        <div className="w-full h-screen bg-yellow-500"> </div>
         </main>
       {/* </section> */}
       <Footer />
