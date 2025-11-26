@@ -94,7 +94,7 @@ const Contact = () => {
         The brilliant minds behind Senova AI, revolutionizing human-AI interaction through advanced healthcare technology.
         </p>
       </div>
-      <div className="w-full flex items-center justify-center gap-10 max-[599px]:flex-wrap">
+      <div className="w-full flex items-center justify-center gap-10 max-[599px]:flex-wrap max-[599px]:gap-6">
         {Contactdata.map((item, index)=>(
           <TiltedCard
           key={index}

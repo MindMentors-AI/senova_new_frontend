@@ -125,7 +125,7 @@ export default function TiltedCard({
 
       {showTooltip && (
         <motion.figcaption
-          className="pointer-events-none absolute left-0 top-0 rounded-full bg-[#dedede] px-[10px] py-[4px] text-[15px] text-[#4a4a4a] opacity-0 z-[3] hidden sm:block"
+          className="pointer-events-none absolute left-0 top-0 rounded-full bg-[#dedede] px-[10px] py-[4px] text-[15px] text-[#4a4a4a] opacity-0 max-[599px]:opacity-100 z-[3] hidden sm:block"
           style={{
             x,
             y,
@@ -140,7 +140,7 @@ export default function TiltedCard({
           rotateX,
           rotateY,
         //   scale
-        }} className='absolute bottom-3 left-3 rounded-full py-3 px-6 bg-black/20 text-[#dedede]'>
+        }} className='absolute bottom-3 max-[599px]:left-1/2 max-[599px]:-translate-x-1/2 left-3 rounded-full py-3 px-6 bg-black/20 text-[#dedede]'>
         <div className="flex flex-row items-center justify-center gap-6">
           <a
             href={linkedin}
@@ -171,6 +171,9 @@ export default function TiltedCard({
           </a>
         </div>
       </motion.div>
+        <p className="pointer-events-none hidden max-[599px]:block absolute right-5 top-5 rounded-full bg-[#dedede] px-[10px] py-[4px] text-[15px] text-[#4a4a4a]">
+              {captionText}
+            </p>
     </figure>
   );
 }
